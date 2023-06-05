@@ -1,0 +1,5 @@
+rootProject.name = 'vitalchem-webapp'
+include ':vitalchem-common-utils'
+project(':vitalchem-common-utils').projectDir = new File('../vitalchem-common-utils')
+include ':vitalchem-sample'
+project(':vitalchem-sample').projectDir = new File('../vitalchem-sample')
