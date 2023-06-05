@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_PATH" value="logs" />
+    <property name="PATTERN" value="%level]-[%d{HH:mm:ss}]-[%thread] %logger.%M\(%L\):%m%n" />
+    
+    <!-- 控制台输出 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder" charset="UTF-8">
+            <!-- <pattern>${PATTERN}</pattern> -->
+            <!-- <pattern><![CDATA[%n[%p]-[%d{HH:mm:ss}]-[Thread: %t] [ Class:%c >> Method: %M:%L ]%n%p:%m%n]]></pattern> -->
+            <pattern><![CDATA[[%p][%d{HH:mm:ss.SSS}][%thread][%c]%n└> - %msg%n]]></pattern>
+            <!-- <pattern><![CDATA[[%p][%d{HH:mm:ss.SSS}][%thread][%c] - %msg%n]]></pattern> -->
+        </encoder>
+        <!-- <filter class="ch.qos.logback.classic.filter.ThresholdFilter">只打印ERROR日志
+            <level>debug</level>
+        </filter> -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印ERROR日志 -->
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>NEUTRAL</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 自定义logger -->
+    <logger name="io.netty" level="ERROR"/>
+    <logger name="org.jboss.netty" level="ERROR"/>
+    <logger name="org.apache" level="ERROR"/>
+    <logger name="org.apache.rocketmq" level="ERROR"/>
+    <logger name="org.eclipse.jetty" level="ERROR"/>
+    <logger name="javax.servlet" level="ERROR"/>
+    <logger name="kd.bos.schedule" level="ERROR"/>
+    <logger name="kd.bos.workflow" level="INFO"/>
+    <logger name="kd.bos.redis" level="ERROR"/>
+    <logger name="kd.bos.db" level="INFO"/>
+    <logger name="kd.bos.db.tx" level="DEBUG"/>
+    <logger name="com.vitalchem" level="INFO"/>
+    
+    <!-- 日志输出级别 -->
+    <root level="WARN">
+        <appender-ref ref="stdout" />
+    </root>
+
+</configuration>
